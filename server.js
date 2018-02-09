@@ -6,23 +6,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const {PORT, DATABASE_URL} = require('./config');
-
-
+const {PORT, TEST_DATABASE_URL} = require('./config');
 const app = express();
+
+//Send static files to client
+app.use(express.static('public'));
 
 //Server functions
 let server;
 
-function runServer() {
-  console.log('run server started');
+// this function connects to our database, then starts the server
+function runServer(databaseUrl, port = PORT) {
+
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
-      server = app.listen(PORT, () => {
-        console.log(`Your app is listening on port ${PORT}`);
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
         resolve();
       })
         .on('error', err => {
@@ -33,8 +35,9 @@ function runServer() {
   });
 }
 
+// this function closes the server, and returns a promise. we'll
+// use it in our integration tests later.
 function closeServer() {
-  console.log('close server start');
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
       console.log('Closing server');
@@ -48,8 +51,11 @@ function closeServer() {
   });
 }
 
-
-
+// if server.js is called directly (aka, with `node server.js`), this block
+// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
-  runServer().catch(err => console.error(err));
+  runServer(TEST_DATABASE_URL).catch(err => console.error(err));
 }
+
+module.exports = app; // this if for testing
+
