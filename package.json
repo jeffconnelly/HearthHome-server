@@ -1,0 +1,14 @@
+{
+  "name": "hearthhome",
+  "version": "1.0.0",
+  "description": "HearthHome, a card database and deck builer site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeff Connelly",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
