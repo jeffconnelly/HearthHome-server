@@ -11,6 +11,8 @@ const app = express();
 
 //Send static files to client
 app.use(express.static('public'));
+app.use(morgan('common'));
+
 
 //Server functions
 let server;
