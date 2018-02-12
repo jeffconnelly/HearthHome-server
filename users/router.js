@@ -8,6 +8,7 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
+//**For future use when adding registration**
 // Post to register a new user
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['username', 'password'];

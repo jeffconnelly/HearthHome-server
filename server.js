@@ -6,6 +6,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const { router: deckRouter } = require('./deckrouter');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
@@ -38,6 +39,7 @@ passport.use(jwtStrategy);
 //Router re-route
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+app.use('/api/deck/', deckRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
