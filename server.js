@@ -16,7 +16,7 @@ const {PORT, TEST_DATABASE_URL, CLIENT_ORIGIN} = require('./config');
 const app = express();
 
 //Send static files to client
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 //Logging with Morgan
 app.use(morgan('common'));
