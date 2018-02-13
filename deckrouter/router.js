@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Deck, User} = require('../users/models');
+const mongoose = require('mongoose');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
@@ -27,20 +28,17 @@ router.post('/', jsonParser, (req, res) => {
     .then(res => res.status(201).json);
 });
 
-
-//Update user deck
-
-
-
 //Delete user deck
-//We will have to find user by id, then match the associated deck id,
-//then delete that property!
+
 router.delete('/:id', (req, res) => {
-  console.log('DELETE:', req.param.id);
   User
-    .findByIdAndRemove(req.params.id)
-    .then(() => res.status(204).end())
-    .catch(err => res.status(500).json({ message: 'Internal server error' }));
+    .findOne({'decks._id': mongoose.Types.ObjectId(req.params.id)})
+    .then((user) => {
+      const deck = user.decks.id(req.params.id).remove();
+      return user.save();   
+    })
+    .then(() => res.status(204).end());
 });
+
 
 module.exports = {router};
