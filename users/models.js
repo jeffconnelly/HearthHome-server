@@ -4,6 +4,11 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+
+const DeckSchema = mongoose.Schema({
+  cards: [],
+});
+
 const UserSchema = mongoose.Schema({
   username: {
     type: String,
@@ -16,23 +21,21 @@ const UserSchema = mongoose.Schema({
   },
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},
-});
-
-const DeckSchema = mongoose.Schema({
-  deck: [],
+  decks: [DeckSchema]
 });
 
 UserSchema.methods.serialize = function() {
   return {
     username: this.username || '',
     firstName: this.firstName || '',
-    lastName: this.lastName || ''
+    lastName: this.lastName || '',
+    id: this._id
   };
 };
 
 DeckSchema.methods.serialize = function() {
   return {
-    deck: this.deck
+    cards: this.cards
   };
 };
 
