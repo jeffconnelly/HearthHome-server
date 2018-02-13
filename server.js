@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 
 const { router: deckRouter } = require('./deckrouter');
 const { router: usersRouter } = require('./users');
@@ -12,7 +13,7 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
-const {PORT, TEST_DATABASE_URL} = require('./config');
+const {PORT, TEST_DATABASE_URL, CLIENT_ORIGIN} = require('./config');
 const app = express();
 
 //Send static files to client
@@ -22,15 +23,11 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 
 //CORS function
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-  if (req.method === 'OPTIONS') {
-    return res.send(204);
-  }
-  next();
-});
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+);
 
 // Passport import
 passport.use(localStrategy);
