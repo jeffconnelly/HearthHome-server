@@ -12,7 +12,7 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
-const {PORT, TEST_DATABASE_URL, CLIENT_ORIGIN} = require('./config');
+const {PORT, TEST_DATABASE_URL, CLIENT_ORIGIN, DATABASE_URL} = require('./config');
 const app = express();
 
 //Send static files to client
@@ -58,7 +58,7 @@ let server;
 
 function runServer() {
   return new Promise((resolve, reject) => {
-    mongoose.connect(TEST_DATABASE_URL, err => {
+    mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
