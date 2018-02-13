@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: O8ikr4KYfURoWKdGfr9nh2MTXgcB+SeFcE/i3UEhx4CcJfIsq6DBdJfZErPcn7ThwnxcRy7zgqkoWh/mfDCCVa9oVMWeUAmpAVF9wRrQd8d4E99QKPbhffDXH2WtGeOXFQPfKdnKe45xqRQEnlZqq5mbSyzgB1hlRUrStDNWfDoGKKV/dMAR/0SWHLgkdC74v5RvB+V7tnol4k8S4zE/No9pEANuRNlwfON9Gy/k+Rx1FjwZmvDX807Hfi2PSHa6haTjkdlDhtKkuksW/FCfW9Yj+B3fizqhwlH4Y0jZP8/l/KlQd7qU15Qahn2NPQwbc/xU9aCeCKFFxen9lWa6GQO+azJny0SA3FBLgroUjMQ3CzpfKS2rNwe4XEvcMt1LFqUzSCYnNZ2qvRacIZelMNeW9TzpvkBrvRG/zGxqJCoy4HCurVza4QvnmXQR3KHxfA9W3qXFICFQWjlHDlgj93ux3FDvvFHmgF6bCy7QFg1syaxCZstJAQmwu0xLRfI+AmcMO333R3H6XqNOA5Wp2JkqND2SJcjPm1lFv7puLEugbN5OhgbKC4RzXZYaUBLPMUzY+yBOy4ootsUzYjmgm7xFc+iuAtQyfDRT/f5aVmqWbaBV0yMmKJn4a+dzK/HJME4vURWY9o4LhsWxp8aFMiXBk98ZMyAlgb9CyAYbFl0=
+  app: hearthhome
+  on:
+    repo: jeffconnelly/HearthHome-server
