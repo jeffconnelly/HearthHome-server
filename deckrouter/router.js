@@ -20,12 +20,19 @@ router.get('/:id', (req, res) => {
 router.post('/', jsonParser, (req, res) => {
   console.log(req.body);
   let { deck, id } = req.body;
-  console.log(deck);
   User.findOneAndUpdate(
     {_id: id}, 
     {'$push':{'decks': {cards:deck}}})
-    .then(res => res.status(201).json);
+    .then((user) => {
+      return user.save();
+    })
+    .then((user) => res.status(200).send(user))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went wrong' });
+    });
 });
+
 
 //Delete user deck
 router.delete('/:id', (req, res) => {
@@ -35,7 +42,7 @@ router.delete('/:id', (req, res) => {
       const deck = user.decks.id(req.params.id).remove();
       return user.save();   
     })
-    .then(() => res.status(204).end());
+    .then((user) => res.status(200).send(user));
 });
 
 module.exports = {router};
