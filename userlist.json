@@ -1,0 +1,20 @@
+{
+  "username": "Bruno",
+  "password": "$2a$10$tO7im5VDOn/jZYBQVnTMseHbEh/GCoduejqAB6MY8GUz0P/pZ.erq",
+  "lastName": "Connelly",
+  "firstName": "Bruno"
+}
+
+{
+  "username": "jconnelly2",
+  "password": "$2a$10$Xtic3Ut.vHXpYjE14eQnAONVy5vdOYWnt/kFQYrXd.kU0Lvu7irPW",
+  "lastName": "Connelly",
+  "firstName": "Jeff"
+}
+
+
+// ds113826.mlab.com:13826/hearthhome-db -u <dbuser> -p <dbpassword> mongo ds113826.mlab.com:13826/hearthhome-db -u jc -p jcjs;
+
+// mongo ds113826.mlab.com:13826/hearthhome-db -u <dbuser> -p <dbpassword>
+
+
