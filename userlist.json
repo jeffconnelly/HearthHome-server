@@ -13,8 +13,5 @@
 }
 
 
-// ds113826.mlab.com:13826/hearthhome-db -u <dbuser> -p <dbpassword> mongo ds113826.mlab.com:13826/hearthhome-db -u jc -p jcjs;
-
-// mongo ds113826.mlab.com:13826/hearthhome-db -u <dbuser> -p <dbpassword>
 
 
